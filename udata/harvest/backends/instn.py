@@ -69,7 +69,7 @@ class InstnBackend(BaseBackend):
                     # If the page number found in the pagination link
                     # is the next page's, we set the next_link
                     # from the href attribute
-                    if page_number == current_page + 1 and False:
+                    if page_number == current_page + 1:
                         next_link = '%s%s' % (self.base_url, page_link.attrs['href'])
             current_page += 1
 
