@@ -24,3 +24,4 @@ from .base import BaseBackend  # flake8: noqa
 from .ods import OdsHarvester  # flake8: noqa
 from .ckan import CkanBackend  # flake8: noqa
 from .instn import InstnBackend  # flake8: noqa
+from .dbnomics import DbnomicsBackend  # flake8: noqa
