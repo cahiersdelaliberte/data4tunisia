@@ -3,13 +3,11 @@ from __future__ import unicode_literals
 
 from udata.models import Resource
 
-from . import BaseBackend, register
+from udata.harvest.backends.base import BaseBackend
 
-import requests
 from bs4 import BeautifulSoup
 
 
-@register
 class InstnBackend(BaseBackend):
     # base url should be 'http://beta.ins.tn'
     name = 'instn'
