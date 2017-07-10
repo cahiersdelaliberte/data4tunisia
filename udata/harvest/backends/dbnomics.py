@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from udata.models import Resource
-from urllib.parse import urlparse, parse_qs
+from urlparse import urlparse, parse_qs
 
 from . import BaseBackend, register
 
