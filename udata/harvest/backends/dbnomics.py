@@ -62,7 +62,7 @@ class DbnomicsBackend(BaseBackend):
         dataset_slug = item.remote_id
 
         # we want to avoid a same id from another
-        # source so we add 'instn' in front of it
+        # source so we add 'dbnomics-' in front of it
         dataset = self.get_dataset('dbnomics-%s' % dataset_slug)
         dataset.title = 'dbnomics-%s' % dataset_slug
         dataset.tags = []
