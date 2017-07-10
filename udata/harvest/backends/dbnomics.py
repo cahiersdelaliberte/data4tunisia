@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from udata.models import Resource
+from urllib.parse import urlparse, parse_qs
 
 from . import BaseBackend, register
 
@@ -28,10 +29,15 @@ class DbnomicsBackend(BaseBackend):
     ]
 
     def initialize(self):
-        # Base URL is 'http://widukind-api.cepremap.org/' and
-        # has been added to database when creating harvester
+        # Base URL is 'http://widukind-api.cepremap.org/?provider=provider' and
+        # has been added to database when creating harvester. The provider argument
+        # is used to filter which provider to parse because dbnomics is an
+        # aggregator of datasets.
         BASE_URL = self.source.url
-        for provider in self.DBNOMICS_PROVIDERS:
+        parsed_url = urlparse(BASE_URL)
+        queries = parse_qs(parsed_url.query)
+        if 'provider' in queries and queries['provider'] in self.DBNOMICS_PROVIDERS:
+            provider = queries['provider']
             # Let's get provider's datasets
             datasets_request = requests.get('%s/api/v1/json/providers/%s/datasets/keys' % (BASE_URL, provider))
             datasets = json.loads(datasets_request.content)['data']
